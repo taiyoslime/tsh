@@ -1,0 +1,8 @@
+objs/
+tsh
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
