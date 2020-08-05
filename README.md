@@ -5,5 +5,8 @@ A toy shell written in C
 - [ ] signal handling
 - [ ] pipe / redirect
 - [ ] build-in commands
+	- [x] cd
+	- [x] exit
+	- [ ] ...
 - [ ] key bindings
 - [ ] environment
