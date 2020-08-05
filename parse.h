@@ -1,13 +1,8 @@
-#ifndef __PARSE__
-#define __PARSE__
+#ifndef PARSE_H
+#define PARSE_H
 
 #define PROMPT "$ "
 #define BUFSIZE 256
-
-typedef struct {
-	char *name;
-	char **arg;
-} process;
 
 process *read_line(void);
 

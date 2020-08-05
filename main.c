@@ -5,15 +5,19 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 
+#include "process.h"
 #include "parse.h"
 #include "commands.h"
 
+
 int main(int argc, char **argv, char **environ) {
-	pid_t pid;
-	int wpstat;
 
 	while (1) {
+		pid_t pid;
+		int wpstat;
 		process* proc = read_line();
+
+
 		bool exec_buildin_cmd = false;
 
 		for(int i = 0; commands[i].name && commands[i].func; i++) {
@@ -32,16 +36,10 @@ int main(int argc, char **argv, char **environ) {
 			}
 
 			if (pid) {
-				waitpid(pid, &wpstat, WUNTRACED);
-				if(!strcmp(proc->name, "exit")){
-					exit(0);
-				}
+				waitpid(-1, &wpstat, WUNTRACED);
 
 			} else {
-				if (!exec_buildin_cmd && execvp(proc->name, proc->arg)) {
-					perror("execvp");
-					exit(127);
-				}
+				exec_process(proc);
 			}
 		}
 	}
