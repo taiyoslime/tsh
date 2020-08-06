@@ -6,7 +6,6 @@
 
 void exec_process(process *proc) {
 	pid_t pid;
-	int wpstat;
 	int fd[2];
 
 	if(proc->next == NULL) {
@@ -15,7 +14,7 @@ void exec_process(process *proc) {
 			exit(127);
 		}
 	} else {
-		if (pipe(fd) == -1);
+		if (pipe(fd) == -1)
 			perror("pipe");
 
 		pid = fork();
@@ -28,7 +27,7 @@ void exec_process(process *proc) {
 			if(close(fd[1]) == -1)
 				perror("close");
 			if(dup2(fd[0], 0) == -1)
-				perror(dup2);
+				perror("dup2");
 			if(close(fd[0]) == -1)
 				perror("close");
 
