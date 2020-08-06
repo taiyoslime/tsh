@@ -9,14 +9,18 @@
 #include "parse.h"
 #include "commands.h"
 
+#define PROMPT "$ "
 
 int main(int argc, char **argv, char **environ) {
 
 	while (1) {
 		pid_t pid;
 		int wpstat;
-		process* proc = read_line();
+		printf(PROMPT);
 
+		process* proc = read_line();
+		if (!(strcmp(proc->name, NOP)))
+			continue;
 
 		bool exec_buildin_cmd = false;
 

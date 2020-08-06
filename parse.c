@@ -7,7 +7,6 @@
 
 static process *parse(char *buf) {
 	process *prev_proc = NULL;
-	int i = 0;
 
 	for(char *buf_l, *_proc_char = strtok_r(buf, "|", &buf_l); _proc_char != NULL; _proc_char = strtok_r(NULL, "|", &buf_l)) {
 
@@ -50,7 +49,7 @@ static process *parse(char *buf) {
 		}
 
 		proc->arg = tokens;
-		proc->name = proc->arg[0];
+		proc->name = proc->arg[0] ? proc->arg[0] : NOP;
 		proc->next = prev_proc;
 
 		prev_proc = proc;
@@ -61,7 +60,6 @@ static process *parse(char *buf) {
 
 process *read_line() {
 	char *buf;
-	printf(PROMPT);
 
 	if ((buf = (char*) malloc(sizeof(char) * BUFSIZE)) == NULL)
 		perror("read_line");
