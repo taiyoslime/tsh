@@ -20,4 +20,4 @@ $(OBJDIR)/%.o: $(SRCDIR)/%$(SUFFIX)
 tmpclean:
 	$(RM) *~
 clean: tmpclean
-	$(RM) $(OBJDIR) $(TARGET)
+	$(RM) $(OBJDIR)/* $(TARGET)
