@@ -2,11 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void cmd_cd(const char** arg) {
 	int ch;
 	if (arg[1] == NULL) {
-		ch  = chdir("~");
+		ch  = chdir(getenv("HOME"));
 	}
 	else {
 		ch = chdir(arg[1]);
